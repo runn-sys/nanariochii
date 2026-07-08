@@ -1,0 +1,574 @@
+:root {
+  /* 元は#FFFBB0/#FFFBB1(彩度100%のビビッドな黄色)。
+     色味は保ちつつ彩度を少し落として上品なトーンに調整 */
+  --color-yellow: #F2ECC9;
+  --color-yellow-header: #F2ECC9;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-card: #363636;
+  /* footerのロゴ(#009B86系のティール)に合わせた配色 */
+  --color-q: #2A9D8F;
+  --color-a: #E76F51;
+  --color-button-shadow: #4A3900;
+  --color-button-face: #F2A1B3;
+
+  --font-heading: "Zen Kaku Gothic New", sans-serif;
+  --font-body: "Zen Kaku Gothic New", sans-serif;
+  --font-number: "Outfit", sans-serif;
+  --font-jp: "Noto Sans JP", sans-serif;
+
+  /* 文字・画像の縮小率。数値を変えるだけで全体の大きさを調整できます (0.85 = 85%) */
+  --content-scale: 0.85;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-white);
+}
+
+.page {
+  position: relative;
+  width: 1440px;
+  margin: 0 auto;
+  transform-origin: top left;
+  background: var(--color-white);
+  font-family: var(--font-body);
+  color: var(--color-black);
+}
+
+.section {
+  position: relative;
+  width: 100%;
+}
+
+.content {
+  position: absolute;
+  inset: 0;
+  transform: scale(var(--content-scale));
+  transform-origin: center top;
+}
+
+/* ---------- Header ---------- */
+.header {
+  height: calc(80px * var(--content-scale));
+  background: var(--color-yellow-header);
+}
+
+.header-nav {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+.header-nav a {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-black);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.header-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.header-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ページのtransform(縮小表示)の影響を受けないよう、.pageの外に置いたうえで
+   position:fixedで画面右上に常時表示するボタン */
+.scroll-top-button {
+  position: fixed;
+  top: 14px;
+  right: 40px;
+  width: 44px;
+  height: 42px;
+  z-index: 1000;
+  display: block;
+  transition: transform 0.15s ease;
+}
+.scroll-top-button img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.scroll-top-button:hover {
+  transform: scale(1.08);
+}
+
+/* ---------- Main (hero) ---------- */
+.main {
+  height: calc(707px * var(--content-scale));
+  background: var(--color-white);
+}
+
+/* .content は縮小のためtransformを持つと独立した重なり順になるため、
+   sensei画像がmemberセクションの黄色背景より前面に来るよう明示的に指定 */
+.main .content {
+  z-index: 1;
+}
+
+.main .hukidashi {
+  position: absolute;
+  left: 451px;
+  top: 289px;
+  width: 462px;
+  height: 462px;
+}
+
+.main .sensei {
+  position: absolute;
+  left: 883px;
+  top: 255px;
+  width: 538px;
+  height: 505px;
+  z-index: 5;
+}
+
+.title-kuriya {
+  position: absolute;
+  left: 172px;
+  top: 88px;
+  width: 877px;
+  height: 112px;
+  font-family: var(--font-heading);
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.title-chukan {
+  position: absolute;
+  left: 171px;
+  top: 211px;
+  width: 458px;
+  height: 113px;
+  font-family: var(--font-heading);
+  font-size: 90px;
+  font-weight: 700;
+  line-height: 1.17;
+}
+
+.title-2026 {
+  position: absolute;
+  left: 838px;
+  top: 105px;
+  width: 243px;
+  height: 85px;
+  font-family: var(--font-heading);
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.date-day {
+  position: absolute;
+  left: 566px;
+  top: 442px;
+  width: 141px;
+  height: 84px;
+  font-family: var(--font-number);
+  font-size: 72px;
+  z-index: 2;
+}
+
+.date-thu {
+  position: absolute;
+  left: 717px;
+  top: 465px;
+  width: 82px;
+  height: 56px;
+  font-family: var(--font-number);
+  font-size: 48px;
+  z-index: 2;
+}
+
+.date-time {
+  position: absolute;
+  left: 566px;
+  top: 533px;
+  width: 231px;
+  height: 47px;
+  font-family: var(--font-number);
+  font-size: 40px;
+  z-index: 2;
+}
+
+/* ---------- Member ---------- */
+.member {
+  height: calc(3525px * var(--content-scale));
+  background: var(--color-yellow);
+}
+
+.member-title {
+  position: absolute;
+  left: 0;
+  width: 1440px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 700;
+}
+.member-title--member { top: 198px; }
+.member-title--production { top: 377px; }
+
+.member-amp {
+  position: absolute;
+  left: 0;
+  top: 287px;
+  width: 1440px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 700;
+}
+
+.card {
+  position: absolute;
+  width: 610px;
+  height: 813px;
+  background: var(--color-card);
+  border-radius: 50px;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.28), 0 8px 16px rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-photo {
+  position: absolute;
+  left: 120px;
+  top: -68px;
+  width: 370px;
+  height: 370px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card-name {
+  position: absolute;
+  left: 0;
+  top: 358px;
+  width: 610px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+
+.card-pill {
+  position: absolute;
+  left: 57px;
+  top: 460px;
+  width: 496px;
+  height: 116px;
+  background: var(--color-white);
+  border-radius: 50px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.card-pill-text {
+  position: absolute;
+  left: 111px;
+  top: 503px;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.card-desc {
+  position: absolute;
+  left: 57px;
+  top: 616px;
+  width: 496px;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.3;
+}
+
+/* ---------- About ---------- */
+.about {
+  height: calc(911px * var(--content-scale));
+  background: var(--color-white);
+}
+
+.about-title {
+  position: absolute;
+  left: 589px;
+  top: 159px;
+  width: 262px;
+  height: 86px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 700;
+}
+
+.about-img {
+  position: absolute;
+  left: 155px;
+  top: 424px;
+  width: 472px;
+  height: 356px;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.about-img.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-heading {
+  position: absolute;
+  left: 644px;
+  top: 412px;
+  width: 660px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.about-heading.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-text {
+  position: absolute;
+  left: 678px;
+  top: 522px;
+  width: 592px;
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.72;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.about-text.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-link {
+  position: absolute;
+  left: 1097px;
+  top: 714px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-black);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.about-link.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.about-link .arrow {
+  font-size: 28px;
+}
+.about-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- URL / Zoom ---------- */
+.url {
+  width: 1280px;
+  height: calc(576px * var(--content-scale));
+  margin: 0 auto;
+  background: transparent;
+}
+
+.url-heading {
+  position: absolute;
+  left: 358px;
+  top: 147px;
+  width: 564px;
+  font-family: var(--font-heading);
+  font-size: 56px;
+  font-weight: 700;
+}
+
+.slash {
+  position: absolute;
+  top: 128px;
+  font-weight: 700;
+  font-size: 90px;
+  font-family: var(--font-body);
+}
+.slash--left { left: 280px; }
+.slash--right { left: 958px; }
+
+@keyframes buttonBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+
+.zoom-button {
+  position: absolute;
+  left: 218px;
+  top: 257px;
+  width: 848px;
+  height: 141px;
+  display: block;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.25));
+  transition: filter 0.15s ease;
+  animation: buttonBreathe 2.4s ease-in-out infinite;
+}
+.zoom-button img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.zoom-button:hover {
+  animation-play-state: paused;
+  transform: translateY(-4px) scale(1.045);
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.3));
+}
+@media (prefers-reduced-motion: reduce) {
+  .zoom-button { animation: none; }
+}
+
+/* ---------- Q&A ---------- */
+.qa {
+  height: calc(1126px * var(--content-scale));
+  background: var(--color-yellow);
+  overflow: hidden;
+}
+
+.qa-ellipse {
+  position: absolute;
+  left: -30px;
+  bottom: -187px;
+  width: 1500px;
+  height: 390px;
+  background: var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 各Q&Aの組を1ブロックとして、スクロールで順番にふわっと現れさせる */
+.qa-item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.qa-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.qa-title {
+  position: absolute;
+  left: 635px;
+  top: 66px;
+  width: 171px;
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 700;
+}
+
+.badge {
+  position: absolute;
+  left: 273px;
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.badge--q { background: var(--color-q); }
+.badge--a { background: var(--color-a); }
+.badge span {
+  font-family: var(--font-jp);
+  font-size: 32px;
+  color: var(--color-white);
+}
+
+.qa-q, .qa-a {
+  position: absolute;
+  left: 370px;
+  width: 896px;
+  font-family: var(--font-body);
+  font-size: 32px;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  height: calc(600px * var(--content-scale));
+  background: var(--color-white);
+  overflow: visible;
+}
+
+.footer-bg {
+  position: absolute;
+  left: 330px;
+  top: -155px;
+  width: 781px;
+  height: 586px;
+}
+
+.copyright {
+  position: absolute;
+  left: 598px;
+  top: 508px;
+  width: 245px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 300;
+}
