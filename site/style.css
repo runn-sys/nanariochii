@@ -1,23 +1,21 @@
 :root {
-  /* 元は#FFFBB0/#FFFBB1(彩度100%のビビッドな黄色)。
-     色味は保ちつつ彩度を少し落として上品なトーンに調整 */
   --color-yellow: #F2ECC9;
   --color-yellow-header: #F2ECC9;
   --color-white: #FFFFFF;
   --color-black: #000000;
   --color-card: #363636;
-  /* footerのロゴ(#009B86系のティール)に合わせた配色 */
   --color-q: #2A9D8F;
   --color-a: #E76F51;
   --color-button-shadow: #4A3900;
   --color-button-face: #F2A1B3;
 
   --font-heading: "Zen Kaku Gothic New", sans-serif;
+  --font-hero: "Shippori Antique B1", sans-serif;
   --font-body: "Zen Kaku Gothic New", sans-serif;
   --font-number: "Outfit", sans-serif;
   --font-jp: "Noto Sans JP", sans-serif;
 
-  /* 文字・画像の縮小率。数値を変えるだけで全体の大きさを調整できます (0.85 = 85%) */
+
   --content-scale: 0.85;
 }
 
@@ -61,7 +59,7 @@ body {
   transform-origin: center top;
 }
 
-/* ---------- Header ---------- */
+
 .header {
   height: calc(80px * var(--content-scale));
   background: var(--color-yellow-header);
@@ -101,8 +99,7 @@ body {
   transform: scaleX(1);
 }
 
-/* ページのtransform(縮小表示)の影響を受けないよう、.pageの外に置いたうえで
-   position:fixedで画面右上に常時表示するボタン */
+
 .scroll-top-button {
   position: fixed;
   top: 14px;
@@ -122,14 +119,13 @@ body {
   transform: scale(1.08);
 }
 
-/* ---------- Main (hero) ---------- */
+
 .main {
   height: calc(707px * var(--content-scale));
   background: var(--color-white);
 }
 
-/* .content は縮小のためtransformを持つと独立した重なり順になるため、
-   sensei画像がmemberセクションの黄色背景より前面に来るよう明示的に指定 */
+
 .main .content {
   z-index: 1;
 }
@@ -157,33 +153,33 @@ body {
   top: 88px;
   width: 877px;
   height: 112px;
-  font-family: var(--font-heading);
-  font-size: 96px;
-  font-weight: 700;
+  font-family: var(--font-hero);
+  font-size: 106px;
+  font-weight: 400;
   line-height: 1.2;
 }
 
 .title-chukan {
   position: absolute;
   left: 171px;
-  top: 211px;
+  top: 236px;
   width: 458px;
   height: 113px;
-  font-family: var(--font-heading);
-  font-size: 90px;
-  font-weight: 700;
+  font-family: var(--font-hero);
+  font-size: 80px;
+  font-weight: 400;
   line-height: 1.17;
 }
 
 .title-2026 {
   position: absolute;
-  left: 838px;
-  top: 105px;
+  left: 940px;
+  top: 120px;
   width: 243px;
   height: 85px;
-  font-family: var(--font-heading);
-  font-size: 80px;
-  font-weight: 700;
+  font-family: var(--font-hero);
+  font-size: 76px;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -220,7 +216,7 @@ body {
   z-index: 2;
 }
 
-/* ---------- Member ---------- */
+
 .member {
   height: calc(3525px * var(--content-scale));
   background: var(--color-yellow);
@@ -322,7 +318,7 @@ body {
   line-height: 1.3;
 }
 
-/* ---------- About ---------- */
+
 .about {
   height: calc(911px * var(--content-scale));
   background: var(--color-white);
@@ -420,7 +416,7 @@ body {
   text-decoration: underline;
 }
 
-/* ---------- URL / Zoom ---------- */
+
 .url {
   width: 1280px;
   height: calc(576px * var(--content-scale));
@@ -478,7 +474,6 @@ body {
   .zoom-button { animation: none; }
 }
 
-/* ---------- Q&A ---------- */
 .qa {
   height: calc(1126px * var(--content-scale));
   background: var(--color-yellow);
@@ -496,7 +491,6 @@ body {
   box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* 各Q&Aの組を1ブロックとして、スクロールで順番にふわっと現れさせる */
 .qa-item {
   position: absolute;
   inset: 0;
@@ -547,9 +541,8 @@ body {
   font-size: 32px;
 }
 
-/* ---------- Footer ---------- */
 .footer {
-  height: calc(600px * var(--content-scale));
+  height: calc(603px * var(--content-scale));
   background: var(--color-white);
   overflow: visible;
 }
